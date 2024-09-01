@@ -1,0 +1,17 @@
+{
+  "name": "block-adventure",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "dead-server --host=localhost --browser=chrome",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Zydrunas (https://github.com/ZydrunasK)",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "dead-server": "^1.0.9"
+  }
+}
