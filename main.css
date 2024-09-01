@@ -7,3 +7,29 @@ body * {
 body {
     font-family: Arial, Helvetica, sans-serif;
 }
+.flexRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.flexCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+header {
+    padding: 25px;
+}
+main {
+    position: relative;
+}
+.blockMan {
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    background-color: black;
+    top: 100px;
+    left: 100px;
+}
