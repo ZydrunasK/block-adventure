@@ -1,7 +1,7 @@
 const gameDOM = document.querySelector('.game');
 
-gameDOM.innerHTML = `<div class="line">${'<div class="sqr"></div>'.repeat(15)}
-</div>`.repeat(15) + '<div class="blockMan"></div>';
+// gameDOM.innerHTML = `<div class="line">${'<div class="sqr"></div>'.repeat(15)}
+// </div>`.repeat(15) + '<div class="blockMan"></div>';
 
 const lineDOM = document.querySelector('.line');
 const sqrDOM = document.querySelector('.sqr');
