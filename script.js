@@ -1,7 +1,12 @@
 const gameDOM = document.querySelector('.game');
+const playBtnDOM = document.querySelector('.playBtn')
 
-// gameDOM.innerHTML = `<div class="line">${'<div class="sqr"></div>'.repeat(15)}
-// </div>`.repeat(15) + '<div class="blockMan"></div>';
+playBtnDOM.addEventListener('click', () => {
+    gameDOM.innerHTML = `<div class="line">${'<div class="sqr"></div>'.repeat(15)}
+    </div>`.repeat(15) + '<div class="blockMan"></div>';   
+})
+
+
 
 const lineDOM = document.querySelector('.line');
 const sqrDOM = document.querySelector('.sqr');
