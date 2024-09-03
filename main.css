@@ -36,16 +36,16 @@ header {
     background-color: green;
 }
 .sqr {
-    height: 32px;
-    width: 32px;
+    height: 48px;
+    width: 48px;
     background-color: red;
 }
 .blockMan {
-    position: absolute;
-    height: 32px;
-    width: 32px;
-    top: 0px;
-    left: 0px;
+    position: relative;
+    height: 48px;
+    width: 48px;
+    top: -288px;
+    left: -672px;
     background-color: black;
 }
 footer {
