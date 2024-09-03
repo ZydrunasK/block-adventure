@@ -25,34 +25,28 @@ header {
     box-shadow: 0 -0.2rem 0.5rem 0.3rem #5f5f5f;
     line-height: 2rem;
 }
-main {
-    position: relative;
-    padding: 100px;
-    background-color: rgb(175, 173, 44);
-    min-height: calc(100vh - 6rem);
+.game {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: blue;
 }
-.map {
+.line {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: green;
 }
-.map .sqr {
-    height: 40px;
-    width: 40px;
+.sqr {
+    height: 32px;
+    width: 32px;
     background-color: red;
 }
 .blockMan {
     position: absolute;
-    height: 40px;
-    width: 40px;
+    height: 32px;
+    width: 32px;
+    top: 0px;
+    left: 0px;
     background-color: black;
-    top: 120px;
-    left: 120px;
 }
 footer {
     position: relative;
