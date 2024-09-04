@@ -6,10 +6,6 @@ const playBtnDOM = document.querySelector('.playBtn')
     </div>`.repeat(15) + '<div class="blockMan"></div>';   
 // })
 
-
-
-
-
 const lineDOM = document.querySelector('.line');
 const sqrDOM = document.querySelector('.sqr');
 const blockManDOM = document.querySelector('.blockMan');
@@ -42,11 +38,9 @@ window.addEventListener('keydown', event => {
             blockManPos.x++
         }
     }
-
+    
     blockManDOM.style.top = (sqrSize * blockManPos.y) + 'px';
     blockManDOM.style.left = (sqrSize * blockManPos.x) + 'px';
     console.log(blockManPos.x, blockManPos.y);
-    
-    
 })
 
