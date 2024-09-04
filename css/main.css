@@ -47,7 +47,15 @@ header {
     position: relative;
     height: 48px;
     width: 48px;
-    top: -288px;
-    left: -672px;
+    top: 0px;
+    left: 0px;
     background-color: black;
+}
+.enemy {
+    position: relative;
+    height: 48px;
+    width: 48px;
+    top: -216px;
+    left: -96px;
+    background-color: blue;
 }
