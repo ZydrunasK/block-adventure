@@ -1,10 +1,12 @@
 const gameDOM = document.querySelector('.game');
 const playBtnDOM = document.querySelector('.playBtn')
 
-playBtnDOM.addEventListener('click', () => {
+// playBtnDOM.addEventListener('click', () => {
     gameDOM.innerHTML = `<div class="line">${'<div class="sqr"></div>'.repeat(15)}
     </div>`.repeat(15) + '<div class="blockMan"></div>';   
-})
+// })
+
+
 
 
 
