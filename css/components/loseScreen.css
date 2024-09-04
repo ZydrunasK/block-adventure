@@ -1,0 +1,29 @@
+.loseScreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: #e7ca8cee;
+    border: 1px solid #b99c5d;
+    padding: 3rem;
+    gap: 2rem;
+}
+h2 {
+    font-size: 3rem;
+}
+.loseScreen[data-visible="false"] {
+    display: none;
+}
+.restartBtn {
+    font-size: 2rem;
+    padding: 0.5rem 2rem;
+    border: 1px solid #b99c5d;
+    border-radius: 1rem;
+} 
+.restartBtn:hover {
+    background-color: #e6e6e6;
+} 
+.restartBtn:active {
+    background-color: #d3d3d3;
+} 

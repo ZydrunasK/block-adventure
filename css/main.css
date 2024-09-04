@@ -1,5 +1,6 @@
 @import '../css/components/menu.css';
 @import '../css/components/footer.css';
+@import '../css/components/loseScreen.css';
 
 body,
 body * {
@@ -47,15 +48,15 @@ header {
     position: relative;
     height: 48px;
     width: 48px;
-    top: 0px;
-    left: 0px;
+    top: -72px;
+    left: -240px;
     background-color: black;
 }
 .enemy {
     position: relative;
     height: 48px;
     width: 48px;
-    top: -216px;
-    left: -96px;
+    top: -168px;
+    left: -528px;
     background-color: blue;
 }

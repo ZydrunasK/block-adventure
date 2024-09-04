@@ -1,11 +1,17 @@
 const gameDOM = document.querySelector('.game');
-const playBtnDOM = document.querySelector('.playBtn')
+const playBtnDOM = document.querySelector('.playBtn');
+const loseScreenDOM = document.querySelector('.loseScreen');
+const restartDOM = document.querySelector('.restartBtn');
 
 const sqrSize = 48;
     
 const blockManPos = {
-    x: 0,
-    y: 0,
+    x: -5,
+    y: -2,
+};
+const enemyPos = {
+    x: -11,
+    y: -3,
 };
 
 playBtnDOM.addEventListener('click', () => {
@@ -13,8 +19,7 @@ playBtnDOM.addEventListener('click', () => {
     </div>`.repeat(15) + '<div><div class="blockMan"></div><div class="enemy"></div><div>';
     gameDOM.style.left = '24px';   
 
-    const lineDOM = document.querySelector('.line');
-    const sqrDOM = document.querySelector('.sqr');
+
     const blockManDOM = document.querySelector('.blockMan');
     const enemyDOM = document.querySelector('.enemy');
     
@@ -43,9 +48,23 @@ playBtnDOM.addEventListener('click', () => {
         
         blockManDOM.style.top = (sqrSize * blockManPos.y) + (sqrSize / 2) + 'px';
         blockManDOM.style.left = (sqrSize * blockManPos.x) + 'px';
+        enemyDOM.style.top = (sqrSize * enemyPos.y) + (sqrSize / 2) + 'px';
+        enemyDOM.style.left = (sqrSize * enemyPos.x) + 'px';
         console.log(blockManPos.x, blockManPos.y);
-    })
+        console.log(enemyPos.x, enemyPos.y);
+        
+
+    })   
+
 })
 
 
+    
+
+
+
+
+
+// const lineDOM = document.querySelector('.line');
+// const sqrDOM = document.querySelector('.sqr');
 
