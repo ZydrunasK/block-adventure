@@ -1,3 +1,6 @@
+@import '../css/components/menu.css';
+@import '../css/components/footer.css';
+
 body,
 body * {
     margin: 0;
@@ -29,7 +32,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: blue;
+    position: relative;
 }
 .line {
     position: relative;
@@ -44,16 +47,15 @@ header {
     position: relative;
     height: 48px;
     width: 48px;
-    top: -288px;
-    left: -672px;
+    top: 0px;
+    left: 0px;
     background-color: black;
 }
-footer {
+.enemy {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.5rem;
-    line-height: 1rem;
-    background-color: antiquewhite;
+    height: 48px;
+    width: 48px;
+    top: -216px;
+    left: -96px;
+    background-color: blue;
 }
