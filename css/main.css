@@ -60,3 +60,11 @@ header {
     left: 240px;
     background-color: blue;
 }
+.sword {
+    display: none;
+    font-size: 3rem;
+    color: black;
+    height: 48px;
+    width: 48px;
+    position: absolute;
+}
