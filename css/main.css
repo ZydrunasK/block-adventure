@@ -45,18 +45,18 @@ header {
     background-color: red;
 }
 .blockMan {
-    position: relative;
+    position: absolute;
     height: 48px;
     width: 48px;
-    top: -72px;
-    left: -240px;
+    top: 96px;
+    left: 96px;
     background-color: black;
 }
 .enemy {
-    position: relative;
+    position: absolute;
     height: 48px;
     width: 48px;
-    top: -168px;
-    left: -528px;
+    top: 192px;
+    left: 240px;
     background-color: blue;
 }
