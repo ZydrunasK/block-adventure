@@ -5,20 +5,20 @@ const restartDOM = document.querySelector('.restartBtn');
 
 const sqrSize = 48;
     
-const blockManPos = {
-    x: 2,
-    y: 2,
-};
-const enemyPos = {
-    x: 5,
-    y: 4,
-};
 
-playBtnDOM.addEventListener('click', () => {
+
+function play() {
     gameDOM.innerHTML = `<div class="line">${'<div class="sqr"></div>'.repeat(15)}
     </div>`.repeat(15) + '<div><div class="blockMan"></div><div class="enemy"></div></div>';
   
-
+    const blockManPos = {
+        x: 2,
+        y: 2,
+    };
+    const enemyPos = {
+        x: 5,
+        y: 4,
+    };
 
     const blockManDOM = document.querySelector('.blockMan');
     const enemyDOM = document.querySelector('.enemy');
@@ -26,43 +26,43 @@ playBtnDOM.addEventListener('click', () => {
 
     window.addEventListener('keydown', event => {
         if (event.key === 'w') {
-            // if (blockManPos.y > -7) {
+            if (blockManPos.y > 0) {
                 blockManPos.y--
-            // }
+            }
         }
         if (event.key === 's') {
-            // if (blockManPos.y < 7) {
+            if (blockManPos.y < 14) {
                 blockManPos.y++
-            // }
+            }
         }
         if (event.key === 'a') {
-            // if (blockManPos.x > -15) {
+            if (blockManPos.x > 0) {
                 blockManPos.x--
-            // }
+            }
         }
         if (event.key === 'd') {
-            // if (blockManPos.x < -1) {
+            if (blockManPos.x < 14) {
                 blockManPos.x++
-            // }
+            }
         }
         
         blockManDOM.style.top = (sqrSize * blockManPos.y) + 'px';
         blockManDOM.style.left = (sqrSize * blockManPos.x) + 'px';
         enemyDOM.style.top = (sqrSize * enemyPos.y) + 'px';
         enemyDOM.style.left = (sqrSize * enemyPos.x) + 'px';
-        console.log(blockManDOM.style.top, blockManDOM.style.left);
-        console.log(enemyDOM.style.top, enemyDOM.style.left);
 
-        if (blockManDOM.style.top === enemyDOM.style.top &&
-            blockManDOM.style.left === enemyDOM.style.left) {
-            loseScreenDOM.dataset.visible = 'true';
-        }
+        console.log('block', blockManPos.y, blockManPos.x);
+        console.log('enemy', enemyPos.y, enemyPos.x);
         
 
+        if (blockManPos.y === enemyPos.y && blockManPos.x === enemyPos.x) {
+            loseScreenDOM.dataset.visible = 'true';
+            return '';
+        }
     })   
-
-})
-
+}
+playBtnDOM.addEventListener('click', play)
+restartDOM.addEventListener('click', play)
 
     
 
