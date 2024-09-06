@@ -5,7 +5,9 @@ const restartDOM = document.querySelector('.restartBtn');
 
 const sqrSize = 48;
     
-
+function randomInterval(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
 function play() {
 
@@ -13,26 +15,40 @@ function play() {
         loseScreenDOM.dataset.visible = 'false';
     }
 
+    function restart() {
+        blockManPos.y = 2;
+        blockManPos.x = 2;
+        loseScreenDOM.dataset.visible = 'false';
+        blockManDOM.style.top = (sqrSize * blockManPos.y) + 'px';
+        blockManDOM.style.left = (sqrSize * blockManPos.x) + 'px';
+        loseScreenDOM.querySelector('h2').textContent = 'YOU  LOST';
+    }
+
     gameDOM.innerHTML = `<div class="line">${'<div class="sqr"></div>'.repeat(15)}
-    </div>`.repeat(15) + '<div><div class="blockMan"></div><div class="enemy"></div></div>';
+    </div>`.repeat(15) + '<div><div class="blockMan"></div></div>';
     gameDOM.innerHTML += '<div class="sword">></div>';
+    gameDOM.innerHTML += '<div class="enemy"></div>'.repeat(randomInterval(3, 6));
   
     const blockManDOM = document.querySelector('.blockMan');
-    const enemyDOM = document.querySelector('.enemy');
+    const enemyDOM = document.querySelectorAll('.enemy');
     const swordDOM = document.querySelector('.sword');
 
     const blockManPos = {
         x: 2,
         y: 2,
     };
-    const enemyPos = {
-        x: 5,
-        y: 4,
-    };
-    enemyDOM.style.top = (sqrSize * enemyPos.y) + 'px';
-    enemyDOM.style.left = (sqrSize * enemyPos.x) + 'px';
+
+    console.log(enemyDOM);
+    
+    for (const enemy of enemyDOM) {
+        enemy.style.top = (sqrSize * randomInterval(3, 13)) + 'px';
+        enemy.style.left = (sqrSize * randomInterval(3, 13)) + 'px';
+    }
+
+    
 
     let lastMove = 'd';
+
 // block walking
     window.addEventListener('keydown', e => {
         if (e.key === 'a') {
@@ -66,10 +82,11 @@ function play() {
         blockManDOM.style.top = (sqrSize * blockManPos.y) + 'px';
         blockManDOM.style.left = (sqrSize * blockManPos.x) + 'px';
 
-        if (blockManPos.y === enemyPos.y && blockManPos.x === enemyPos.x) {
-            loseScreenDOM.dataset.visible = 'true';
+        for (const enemy of enemyDOM) {
+            if (blockManDOM.style.top === enemy.style.top && blockManDOM.style.left === enemy.style.left) {
+                loseScreenDOM.dataset.visible = 'true';
+            }
         }
-
     }) 
 
     // sword usage
@@ -86,22 +103,23 @@ function play() {
         if (e.key === ' ') {
             swordDOM.style.display = 'block'
         }
-    })    
-    window.addEventListener('keyup', (e) => {
-        if (e.key === ' ') {
-            swordDOM.style.display = 'none'
+        
+        // win screen
+        for (const enemy of enemyDOM) {
+            if (swordDOM.style.display === 'block') {
+                if (swordDOM.style.left === enemy.style.left && swordDOM.style.top === enemy.style.top) {
+                    loseScreenDOM.querySelector('h2').textContent = 'YOU  WON';
+                    loseScreenDOM.dataset.visible = 'true'; 
+                }
+            }
+            setTimeout(() => {
+                swordDOM.style.display = 'none'
+            }, 300);  
         }
-    })    
+    }) 
+    
 
-    restartDOM.addEventListener('click', () => {
-        blockManPos.y = 2;
-        blockManPos.x = 2;
-        enemyPos.y = 4;
-        enemyPos.x = 5;
-        loseScreenDOM.dataset.visible = 'false';
-        blockManDOM.style.top = (sqrSize * blockManPos.y) + 'px';
-        blockManDOM.style.left = (sqrSize * blockManPos.x) + 'px';
-    })      
+    restartDOM.addEventListener('click', restart)      
 }
 playBtnDOM.addEventListener('click', play)
 
