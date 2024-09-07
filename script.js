@@ -1,6 +1,6 @@
 const gameDOM = document.querySelector('.game');
 const playBtnDOM = document.querySelector('.playBtn');
-const loseScreenDOM = document.querySelector('.loseScreen');
+const endScreenDOM = document.querySelector('.endScreen');
 const restartDOM = document.querySelector('.restartBtn');
 
 const sqrSize = 48;
@@ -11,23 +11,36 @@ function randomInterval(min, max) {
 
 function play() {
 
-    if (loseScreenDOM.dataset.visible === 'true') {
-        loseScreenDOM.dataset.visible = 'false';
+    if (endScreenDOM.dataset.visible === 'true') {
+        endScreenDOM.dataset.visible = 'false';
     }
 
     function restart() {
         blockManPos.y = 2;
         blockManPos.x = 2;
-        loseScreenDOM.dataset.visible = 'false';
+        endScreenDOM.dataset.visible = 'false';
         blockManDOM.style.top = (sqrSize * blockManPos.y) + 'px';
         blockManDOM.style.left = (sqrSize * blockManPos.x) + 'px';
-        loseScreenDOM.querySelector('h2').textContent = 'YOU  LOST';
+        endScreenDOM.querySelector('h2').textContent = 'YOU  LOST';
     }
+
+    function isAlive(a) {
+        let resArr = true;
+        for (const obj of a) {
+           if (obj.dataset.alive === 'false') {
+            resArr = false;
+           } else {
+               resArr = true;
+               break;
+           }
+        }
+        return resArr;
+    };
 
     gameDOM.innerHTML = `<div class="line">${'<div class="sqr"></div>'.repeat(15)}
     </div>`.repeat(15) + '<div><div class="blockMan"></div></div>';
     gameDOM.innerHTML += '<div class="sword">></div>';
-    gameDOM.innerHTML += '<div class="enemy"></div>'.repeat(randomInterval(3, 6));
+    gameDOM.innerHTML += '<div class="enemy" data-alive="true"></div>'.repeat(randomInterval(3, 6));
   
     const blockManDOM = document.querySelector('.blockMan');
     const enemyDOM = document.querySelectorAll('.enemy');
@@ -38,18 +51,15 @@ function play() {
         y: 2,
     };
 
-    console.log(enemyDOM);
     
     for (const enemy of enemyDOM) {
         enemy.style.top = (sqrSize * randomInterval(3, 13)) + 'px';
         enemy.style.left = (sqrSize * randomInterval(3, 13)) + 'px';
     }
 
-    
-
     let lastMove = 'd';
 
-// block walking
+// block walking / lose
     window.addEventListener('keydown', e => {
         if (e.key === 'a') {
             lastMove = 'a';
@@ -82,9 +92,12 @@ function play() {
         blockManDOM.style.top = (sqrSize * blockManPos.y) + 'px';
         blockManDOM.style.left = (sqrSize * blockManPos.x) + 'px';
 
+        // lose
         for (const enemy of enemyDOM) {
-            if (blockManDOM.style.top === enemy.style.top && blockManDOM.style.left === enemy.style.left) {
-                loseScreenDOM.dataset.visible = 'true';
+            if (blockManDOM.style.top === enemy.style.top
+                && blockManDOM.style.left === enemy.style.left
+                && enemy.dataset.alive === 'true') {
+                endScreenDOM.dataset.visible = 'true';
             }
         }
     }) 
@@ -107,18 +120,23 @@ function play() {
         // win screen
         for (const enemy of enemyDOM) {
             if (swordDOM.style.display === 'block') {
-                if (swordDOM.style.left === enemy.style.left && swordDOM.style.top === enemy.style.top) {
-                    loseScreenDOM.querySelector('h2').textContent = 'YOU  WON';
-                    loseScreenDOM.dataset.visible = 'true'; 
+                if (swordDOM.style.left === enemy.style.left
+                    && swordDOM.style.top === enemy.style.top
+                    && enemy.dataset.alive === 'true') {
+
+                    enemy.dataset.alive = 'false';
                 }
             }
             setTimeout(() => {
                 swordDOM.style.display = 'none'
             }, 300);  
         }
+        if (!isAlive(enemyDOM)) {
+            endScreenDOM.querySelector('h2').textContent = 'YOU  WON';
+            endScreenDOM.dataset.visible = 'true'; 
+        }
     }) 
     
-
     restartDOM.addEventListener('click', restart)      
 }
 playBtnDOM.addEventListener('click', play)

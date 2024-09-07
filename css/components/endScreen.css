@@ -1,4 +1,4 @@
-.loseScreen {
+.endScreen {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,11 +8,12 @@
     border: 1px solid #b99c5d;
     padding: 3rem;
     gap: 2rem;
+    z-index: 2;
 }
 h2 {
     font-size: 3rem;
 }
-.loseScreen[data-visible="false"] {
+.endScreen[data-visible="false"] {
     display: none;
 }
 .restartBtn {

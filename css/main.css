@@ -1,6 +1,6 @@
 @import '../css/components/menu.css';
 @import '../css/components/footer.css';
-@import '../css/components/loseScreen.css';
+@import '../css/components/endScreen.css';
 
 body,
 body * {
@@ -52,13 +52,16 @@ header {
     left: 96px;
     background-color: black;
 }
-.enemy {
+.enemy[data-alive="true"] {
     position: absolute;
     height: 48px;
     width: 48px;
     top: 192px;
     left: 240px;
     background-color: blue;
+}
+.enemy[data-alive="false"] {
+    display: none;
 }
 .sword {
     display: none;
