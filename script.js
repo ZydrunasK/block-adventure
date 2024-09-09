@@ -131,17 +131,18 @@ function play() {
                     enemy.dataset.alive = 'false';
                 }
             }
-            setTimeout(() => {
-                swordDOM.style.display = 'none'
-            }, 300);  
         }
+        setTimeout(() => {
+            swordDOM.style.display = 'none'
+        }, 300);  
         if (!isAlive(enemyDOM)) {
             endScreenDOM.querySelector('h2').textContent = 'YOU  WON';
             endScreenDOM.dataset.visible = 'true'; 
         }
     }) 
     
-    restartDOM.addEventListener('click', restart)      
+     
+    restartDOM.addEventListener('click', restart) 
 }
 playBtnDOM.addEventListener('click', play)
 
