@@ -22,6 +22,11 @@ function play() {
         blockManDOM.style.top = (sqrSize * blockManPos.y) + 'px';
         blockManDOM.style.left = (sqrSize * blockManPos.x) + 'px';
         endScreenDOM.querySelector('h2').textContent = 'YOU  LOST';
+        for (const enemy of enemyDOM) {
+            if (enemy.dataset.alive === 'false') {
+                enemy.dataset.alive = 'true';
+            }
+        }       
     }
 
     function isAlive(a) {
@@ -59,7 +64,7 @@ function play() {
 
     let lastMove = 'd';
 
-// block walking / lose
+    // block walking / lose
     window.addEventListener('keydown', e => {
         if (e.key === 'a') {
             lastMove = 'a';
@@ -123,7 +128,6 @@ function play() {
                 if (swordDOM.style.left === enemy.style.left
                     && swordDOM.style.top === enemy.style.top
                     && enemy.dataset.alive === 'true') {
-
                     enemy.dataset.alive = 'false';
                 }
             }
@@ -140,7 +144,6 @@ function play() {
     restartDOM.addEventListener('click', restart)      
 }
 playBtnDOM.addEventListener('click', play)
-
 
     
 
