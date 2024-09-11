@@ -6,4 +6,4 @@ this is a small game im making called block adventure
 
 ## Author
 
-Zydrunas (https://github.com/ZydrunasK);
+Žydrūnas (https://github.com/ZydrunasK);
