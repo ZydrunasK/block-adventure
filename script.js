@@ -23,30 +23,30 @@ function randomInterval(min, max) {
 }
 
 function play() {
-
+    
+    if (endScreenDOM.dataset.visible === 'true') {
+        endScreenDOM.dataset.visible = 'false';
+    }
+    
     gameDOM.innerHTML = `<div class="line">${'<div class="sqr"></div>'.repeat(15)}
     </div>`.repeat(15) + '<div><div class="blockMan"></div></div>';
     gameDOM.innerHTML += '<div class="sword">></div>';
     gameDOM.innerHTML += '<div class="enemy" data-alive="true"></div>'.repeat(randomInterval(1, 1));
-  
+    
     const blockManDOM = document.querySelector('.blockMan');
     const enemyDOM = document.querySelectorAll('.enemy');
     const swordDOM = document.querySelector('.sword');
-
+    
     const blockManPos = {
         x: 2,
         y: 2,
     };
-
+    
     for (const enemy of enemyDOM) {
         enemy.style.top = (sqrSize * randomInterval(3, 13)) + 'px';
         enemy.style.left = (sqrSize * randomInterval(3, 13)) + 'px';
     }
-
-    if (endScreenDOM.dataset.visible === 'true') {
-        endScreenDOM.dataset.visible = 'false';
-    }
-
+    
     let lastMove = 'd';
 
     // block walking / lose
