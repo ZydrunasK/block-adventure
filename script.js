@@ -4,48 +4,30 @@ const endScreenDOM = document.querySelector('.endScreen');
 const restartDOM = document.querySelector('.restartBtn');
 
 const sqrSize = 48;
-    
+
+function isAlive(arr) {
+    let resArr = true;
+    for (const val of arr) {
+       if (val.dataset.alive === 'false') {
+        resArr = false;
+       } else {
+           resArr = true;
+           break;
+       }
+    }
+    return resArr;
+};
+
 function randomInterval(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 function play() {
 
-    if (endScreenDOM.dataset.visible === 'true') {
-        endScreenDOM.dataset.visible = 'false';
-    }
-
-    function restart() {
-        blockManPos.y = 2;
-        blockManPos.x = 2;
-        endScreenDOM.dataset.visible = 'false';
-        blockManDOM.style.top = (sqrSize * blockManPos.y) + 'px';
-        blockManDOM.style.left = (sqrSize * blockManPos.x) + 'px';
-        endScreenDOM.querySelector('h2').textContent = 'YOU  LOST';
-        for (const enemy of enemyDOM) {
-            if (enemy.dataset.alive === 'false') {
-                enemy.dataset.alive = 'true';
-            }
-        }       
-    }
-
-    function isAlive(a) {
-        let resArr = true;
-        for (const obj of a) {
-           if (obj.dataset.alive === 'false') {
-            resArr = false;
-           } else {
-               resArr = true;
-               break;
-           }
-        }
-        return resArr;
-    };
-
     gameDOM.innerHTML = `<div class="line">${'<div class="sqr"></div>'.repeat(15)}
     </div>`.repeat(15) + '<div><div class="blockMan"></div></div>';
     gameDOM.innerHTML += '<div class="sword">></div>';
-    gameDOM.innerHTML += '<div class="enemy" data-alive="true"></div>'.repeat(randomInterval(3, 6));
+    gameDOM.innerHTML += '<div class="enemy" data-alive="true"></div>'.repeat(randomInterval(1, 1));
   
     const blockManDOM = document.querySelector('.blockMan');
     const enemyDOM = document.querySelectorAll('.enemy');
@@ -56,10 +38,13 @@ function play() {
         y: 2,
     };
 
-    
     for (const enemy of enemyDOM) {
         enemy.style.top = (sqrSize * randomInterval(3, 13)) + 'px';
         enemy.style.left = (sqrSize * randomInterval(3, 13)) + 'px';
+    }
+
+    if (endScreenDOM.dataset.visible === 'true') {
+        endScreenDOM.dataset.visible = 'false';
     }
 
     let lastMove = 'd';
@@ -142,15 +127,30 @@ function play() {
     }) 
     
      
-    restartDOM.addEventListener('click', restart) 
+    // restartDOM.addEventListener('click', restart) 
+
+    function restart() {
+        blockManPos.y = 2;
+        blockManPos.x = 2;
+        endScreenDOM.dataset.visible = 'false';
+        blockManDOM.style.top = (sqrSize * blockManPos.y) + 'px';
+        blockManDOM.style.left = (sqrSize * blockManPos.x) + 'px';
+        endScreenDOM.querySelector('h2').textContent = 'YOU  LOST';
+        for (const enemy of enemyDOM) {
+            if (enemy.dataset.alive === 'false') {
+                enemy.dataset.alive = 'true';
+            }
+        }
+        for (const enemy of enemyDOM) {
+            enemy.style.top = (sqrSize * randomInterval(3, 13)) + 'px';
+            enemy.style.left = (sqrSize * randomInterval(3, 13)) + 'px';
+        }      
+    }
 }
 playBtnDOM.addEventListener('click', play)
-
+restartDOM.addEventListener('click', play) 
     
 
 
 
-
-// const lineDOM = document.querySelector('.line');
-// const sqrDOM = document.querySelector('.sqr');
 
